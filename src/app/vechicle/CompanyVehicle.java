@@ -1,4 +1,4 @@
-package sample.vechicle;
+package app.vechicle;
 
 public class CompanyVehicle {
     private int _vehicleID;

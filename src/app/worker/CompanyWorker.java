@@ -1,4 +1,4 @@
-package sample.worker;
+package app.worker;
 
 public class CompanyWorker {
     private int _workerID;
