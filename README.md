@@ -8,18 +8,18 @@ For all practical purposes(MVP):
 
 Java:
 
-- [ ] Create TransportCompany class
-- [ ] Create Client class
-- [ ] Create Vechicle class
-- [ ] Create Workers class
+- [x] Create TransportCompany class
+- [x] Create Client class
+- [x] Create Vechicle class
+- [x] Create Workers class
 
 JavaFX:
 
-- [ ] Window which will list all available transport companies (root window)
-    - [ ] List
-    - [ ] Create
-    - [ ] Edit
-    - [ ] Delete
+- [x] Window which will list all available transport companies (root window)
+    - [x] List
+    - [x] Create
+    - [x] Edit
+    - [x] Delete
 - [ ] Window which will enable adding clients to company (child window)
     - [ ] List
     - [ ] Create
