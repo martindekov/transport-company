@@ -1,8 +1,8 @@
-package sample.company;
+package app.company;
 
-import sample.client.CompanyClient;
-import sample.vechicle.CompanyVehicle;
-import sample.worker.CompanyWorker;
+import app.client.CompanyClient;
+import app.vechicle.CompanyVehicle;
+import app.worker.CompanyWorker;
 
 import java.util.ArrayList;
 import java.util.List;

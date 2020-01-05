@@ -1,9 +1,8 @@
-package sample;
+package app;
 
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -14,7 +13,7 @@ public class Controller {
     public void pressButton(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("sample.fxml"));//, resources);
+            root = FXMLLoader.load(getClass().getResource("app.fxml"));//, resources);
             Stage stage = new Stage();
             stage.setTitle("My New Stage Title");
             stage.setScene(new Scene(root, 450, 450));

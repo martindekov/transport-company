@@ -1,4 +1,4 @@
-package sample.client;
+package app.client;
 
 public class CompanyClient {
     private int _clientID;
