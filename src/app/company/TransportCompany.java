@@ -8,16 +8,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransportCompany {
-    private String _companyName;
+    private String companyName;
     private List _companyClients;
     private List _companyVehicles;
     private List _companyWorkers;
 
     public TransportCompany(String companyName){
-        _companyName = companyName;
+        this.companyName = companyName;
         _companyClients = new ArrayList();
         _companyVehicles = new ArrayList();
         _companyWorkers = new ArrayList();
+    }
+
+    public void setCompanyName(String companyName){
+        this.companyName = companyName;
+    }
+
+    public String getCompanyName(){
+        return this.companyName;
     }
 
     public void addClient(String clientName){
