@@ -16,7 +16,6 @@ import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -68,18 +67,15 @@ public class MainAppController implements Initializable {
     }
 
     public void showCompanyView(ActionEvent actionEvent) throws IOException {
-        Parent companyDetailsView = FXMLLoader.load(getClass().getResource("CompanyDetailsView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("CompanyDetailsView.fxml"));
+        Parent companyDetailsView = loader.load();
         Scene companyDetailsViewScene = new Scene(companyDetailsView);
         Stage companyDetailsWindow = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
 
         companyDetailsWindow.setScene(companyDetailsViewScene);
 
-        /*
-         * This will be used to pass objects to the detail
-         * Controllers
-         */
-        //ClientDetailsController controller = loader.getController();
-        //controller.initData(this.tc);
+        CompanyDetailsController controller = loader.getController();
+        controller.initData(transportCompanyTableView.getSelectionModel().getSelectedItem());
         companyDetailsWindow.show();
     }
 }
