@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.CompanyDetailsController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.CompanyDetailsController">
    <children>
-      <AnchorPane prefHeight="400.0" prefWidth="600.0">
+      <AnchorPane prefHeight="600.0" prefWidth="1000.0">
          <children>
-            <Button layoutX="524.0" layoutY="360.0" mnemonicParsing="false" onAction="#showMainView" text="Return" />
+            <Button layoutX="924.0" layoutY="560.0" mnemonicParsing="false" onAction="#showMainView" text="Return" />
+            <VBox prefHeight="545.0" prefWidth="1001.0">
+               <children>
+                  <Label fx:id="companyName" alignment="CENTER" prefHeight="35.0" prefWidth="1000.0" text="Label" textAlignment="CENTER" />
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
    </children>
