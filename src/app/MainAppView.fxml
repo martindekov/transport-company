@@ -20,7 +20,7 @@
                      <children>
                         <TableView fx:id="transportCompanyTableView" prefHeight="200.0" prefWidth="843.0">
                           <columns>
-                            <TableColumn fx:id="transportCompanyNameColumn" prefWidth="997.0" text="Company Name" />
+                            <TableColumn fx:id="transportCompanyNameColumn" onEditCommit="#editCompany" prefWidth="997.0" text="Company Name" />
                           </columns>
                         </TableView>
                         <HBox prefHeight="11.0" prefWidth="877.0">

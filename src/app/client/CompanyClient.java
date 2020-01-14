@@ -1,11 +1,17 @@
 package app.client;
 
 public class CompanyClient {
-    private int _clientID;
-    private String _clientName;
+    private String clientName;
 
-    public CompanyClient(int clientID, String clientName){
-        _clientID = clientID;
-        _clientName = clientName;
+    public CompanyClient(String clientName){
+        this.clientName = clientName;
+    }
+
+    public String getClientName(){
+        return this.clientName;
+    }
+
+    public void setClientName(String clientName){
+        this.clientName = clientName;
     }
 }

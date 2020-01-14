@@ -9,13 +9,13 @@ import java.util.List;
 
 public class TransportCompany {
     private String companyName;
-    private List _companyClients;
+    private List companyClients;
     private List _companyVehicles;
     private List _companyWorkers;
 
     public TransportCompany(String companyName){
         this.companyName = companyName;
-        _companyClients = new ArrayList();
+        this.companyClients = new ArrayList();
         _companyVehicles = new ArrayList();
         _companyWorkers = new ArrayList();
     }
@@ -28,9 +28,21 @@ public class TransportCompany {
         return this.companyName;
     }
 
-    public void addClient(String clientName){
-        int clientID = _companyClients.size();
-        _companyClients.add(new CompanyClient(clientID,clientName));
+    public TransportCompany addDummyClient(String clientName){
+        this.companyClients.add(new CompanyClient(clientName));
+        return this;
+    }
+
+    public void addClient(CompanyClient newClient){
+        this.companyClients.add(newClient);
+    }
+
+    public void removeClient(int clientPosition){
+        this.companyClients.remove(clientPosition);
+    }
+
+    public void editClient(CompanyClient companyClient, int clientIndex){
+        this.companyClients.set(clientIndex,companyClient);
     }
 
     public void addVehicle(String vehicleName){
@@ -39,8 +51,11 @@ public class TransportCompany {
     }
 
     public void addWorker(String workerName){
-        int workerID = _companyClients.size();
+        int workerID = this._companyWorkers.size();
         _companyWorkers.add(new CompanyWorker(workerID,workerName));
     }
 
+    public List<CompanyClient> getCompanyClients() {
+        return this.companyClients;
+    }
 }

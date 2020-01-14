@@ -18,11 +18,12 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainAppController implements Initializable {
 
-    private TransportCompany tc;
+    private List<TransportCompany> transportCompanies;
 
     @FXML
     private TextField companyNameTextField;
@@ -34,13 +35,9 @@ public class MainAppController implements Initializable {
     private TableColumn<TransportCompany,String> transportCompanyNameColumn;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        transportCompanyNameColumn.setCellValueFactory(new PropertyValueFactory<>("companyName"));
-        transportCompanyTableView.setItems(getTransportCompanies());
-        transportCompanyTableView.setEditable(true);
-        transportCompanyNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-    }
+    public void initialize(URL url, ResourceBundle resourceBundle) {}
 
+    @FXML
     public void editCompany(CellEditEvent editEvent){
         TransportCompany company = transportCompanyTableView.getSelectionModel().getSelectedItem();
         company.setCompanyName(editEvent.getNewValue().toString());
@@ -49,6 +46,7 @@ public class MainAppController implements Initializable {
     public void createCompany(){
         TransportCompany newTransportCompany = new TransportCompany(companyNameTextField.getText());
         transportCompanyTableView.getItems().add(newTransportCompany);
+        transportCompanies.add(newTransportCompany);
     }
 
     public void deleteCompany(){
@@ -58,25 +56,26 @@ public class MainAppController implements Initializable {
         transportCompanies.remove(selectedTransportCompany);
     }
 
-    public ObservableList<TransportCompany> getTransportCompanies(){
-        ObservableList<TransportCompany> transportCompanies = FXCollections.observableArrayList();
-        transportCompanies.add(new TransportCompany("Cmpany a"));
-        transportCompanies.add(new TransportCompany("Cmpany b"));
-        transportCompanies.add(new TransportCompany("Cmpany c"));
-        return transportCompanies;
-    }
-
     public void showCompanyView(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("CompanyDetailsView.fxml"));
         Parent companyDetailsView = loader.load();
         Scene companyDetailsViewScene = new Scene(companyDetailsView);
+        CompanyDetailsController controller = loader.getController();
+        controller.initData(transportCompanies,transportCompanyTableView.getSelectionModel().getFocusedIndex());
         Stage companyDetailsWindow = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
 
         companyDetailsWindow.setScene(companyDetailsViewScene);
 
-        CompanyDetailsController controller = loader.getController();
-        controller.initData(transportCompanyTableView.getSelectionModel().getSelectedItem());
         companyDetailsWindow.show();
+    }
+
+    public void initData(List<TransportCompany> transportCompanies){
+        this.transportCompanies = transportCompanies;
+        transportCompanyNameColumn.setCellValueFactory(new PropertyValueFactory<>("companyName"));
+        transportCompanyTableView.setItems(FXCollections.observableArrayList(this.transportCompanies));
+        transportCompanyTableView.getSelectionModel().selectFirst();
+        transportCompanyTableView.setEditable(true);
+        transportCompanyNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 }
 
