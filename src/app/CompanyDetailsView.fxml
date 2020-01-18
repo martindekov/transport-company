@@ -29,8 +29,8 @@
                            <children>
                               <AnchorPane prefHeight="175.0" prefWidth="271.0">
                                  <children>
-                                    <Button layoutX="101.0" layoutY="135.0" mnemonicParsing="false" onAction="#createCompany" prefHeight="26.0" prefWidth="70.0" text="Create" />
-                                    <Button layoutX="187.0" layoutY="135.0" mnemonicParsing="false" onAction="#deleteCompany" prefHeight="26.0" prefWidth="70.0" text="Delete" />
+                                    <Button layoutX="101.0" layoutY="135.0" mnemonicParsing="false" onAction="#createClient" prefHeight="26.0" prefWidth="70.0" text="Create" />
+                                    <Button layoutX="187.0" layoutY="135.0" mnemonicParsing="false" onAction="#deleteClient" prefHeight="26.0" prefWidth="70.0" text="Delete" />
                                     <TextField fx:id="clientNameTextField" layoutX="51.0" layoutY="75.0" promptText="Client Name" />
                                  </children>
                               </AnchorPane>
@@ -38,7 +38,25 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="175.0" prefWidth="1001.0" />
+                  <HBox prefHeight="175.0" prefWidth="1001.0">
+                     <children>
+                        <TableView fx:id="companyWorkersTableView" prefHeight="175.0" prefWidth="729.0">
+                           <columns>
+                              <TableColumn fx:id="companyWorkersColumn" onEditCommit="#editWorker" prefWidth="728.0" text="Workers" />
+                           </columns>
+                        </TableView>
+                        <VBox prefHeight="133.0" prefWidth="271.0">
+                           <children>
+                              <AnchorPane prefHeight="175.0" prefWidth="271.0">
+                                 <children>
+                                    <Button layoutX="101.0" layoutY="135.0" mnemonicParsing="false" onAction="#createWorker" prefHeight="26.0" prefWidth="70.0" text="Create" />
+                                    <Button layoutX="187.0" layoutY="135.0" mnemonicParsing="false" onAction="#deleteWorker" prefHeight="26.0" prefWidth="70.0" text="Delete" />
+                                    <TextField fx:id="workerNameTextField" layoutX="51.0" layoutY="75.0" promptText="Worker Name" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                     </children></HBox>
                   <HBox prefHeight="175.0" prefWidth="1001.0" />
                </children>
             </VBox>
