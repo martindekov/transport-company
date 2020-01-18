@@ -2,6 +2,7 @@ package app;
 
 import app.client.CompanyClient;
 import app.company.TransportCompany;
+import app.vechicle.CompanyVehicle;
 import app.worker.CompanyWorker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -52,6 +53,14 @@ public class CompanyDetailsController implements Initializable {
     @FXML
     private TableColumn<CompanyWorker,String> companyWorkersColumn;
 
+    @FXML
+    private TextField vehicleNameTextField;
+
+    @FXML
+    private TableView<CompanyVehicle> companyVehiclesTableView;
+
+    @FXML
+    private TableColumn<CompanyVehicle,String> companyVehiclesColumn;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
@@ -68,11 +77,11 @@ public class CompanyDetailsController implements Initializable {
     }
 
     public void deleteClient(){
-        ObservableList<CompanyClient> companyClients;
-        companyClients = companyClientsTableView.getItems();
-        int selectedCompanyClient = companyClientsTableView.getSelectionModel().getFocusedIndex();
-        companyClients.remove(selectedCompanyClient);
-        this.transportCompanies.get(this.transportCompanyIndex).removeClient(selectedCompanyClient);
+        ObservableList<CompanyVehicle> companyVehicles;
+        companyVehicles = companyVehiclesTableView.getItems();
+        int selectedCompanyVehicle = companyVehiclesTableView.getSelectionModel().getFocusedIndex();
+        companyVehicles.remove(selectedCompanyVehicle);
+        this.transportCompanies.get(this.transportCompanyIndex).removeClient(selectedCompanyVehicle);
     }
 
     public void editWorker(CellEditEvent editEvent){
@@ -92,6 +101,25 @@ public class CompanyDetailsController implements Initializable {
         int selectedCompanyWorker = companyWorkersTableView.getSelectionModel().getFocusedIndex();
         companyWorkers.remove(selectedCompanyWorker);
         this.transportCompanies.get(transportCompanyIndex).removeWorker(selectedCompanyWorker);
+    }
+
+    public void editVehicle(CellEditEvent editEvent){
+        CompanyVehicle companyVehicle = companyVehiclesTableView.getSelectionModel().getSelectedItem();
+        companyVehicle.setVehicleName(editEvent.getNewValue().toString());
+    }
+
+    public void createVehicle(){
+        CompanyVehicle newCompanyVehicle = new CompanyVehicle(vehicleNameTextField.getText());
+        companyVehiclesTableView.getItems().add(newCompanyVehicle);
+        transportCompanies.get(transportCompanyIndex).addVehicle(newCompanyVehicle);
+    }
+
+    public void deleteVehicle(){
+        ObservableList<CompanyVehicle> companyVehicles;
+        companyVehicles = companyVehiclesTableView.getItems();
+        int selectedCompanyVehicle = companyVehiclesTableView.getSelectionModel().getFocusedIndex();
+        companyVehicles.remove(selectedCompanyVehicle);
+        this.transportCompanies.get(transportCompanyIndex).removeVehicle(selectedCompanyVehicle);
     }
 
     public void showMainView(ActionEvent actionEvent) throws IOException {
@@ -120,5 +148,10 @@ public class CompanyDetailsController implements Initializable {
         companyWorkersTableView.setItems(FXCollections.observableArrayList(this.transportCompanies.get(this.transportCompanyIndex).getCompanyWorkers()));
         companyWorkersTableView.setEditable(true);
         companyWorkersColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        companyVehiclesColumn.setCellValueFactory(new PropertyValueFactory<CompanyVehicle,String>("vehicleName"));
+        companyVehiclesTableView.setItems(FXCollections.observableArrayList(this.transportCompanies.get(this.transportCompanyIndex).getCompanyVehicles()));
+        companyVehiclesTableView.setEditable(true);
+        companyVehiclesColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 }

@@ -30,11 +30,11 @@ JavaFX:
     - [x] Create
     - [x] Edit
     - [x] Delete
-- [ ] Window which will enable adding vechicles to company (child window)
-    - [ ] List
-    - [ ] Create
-    - [ ] Edit
-    - [ ] Delete
+- [x] Window which will enable adding vehicles to company (child window)
+    - [x] List
+    - [x] Create
+    - [x] Edit
+    - [x] Delete
 - [ ] Window which will enable adding transportation orders (child window)
     - [ ] List
     - [ ] Create

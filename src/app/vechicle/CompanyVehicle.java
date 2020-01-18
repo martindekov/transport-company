@@ -1,11 +1,17 @@
 package app.vechicle;
 
 public class CompanyVehicle {
-    private int _vehicleID;
-    private String _vehicleName;
+    private String vehicleName;
 
-    public CompanyVehicle(int vehicleID, String vehicleName){
-        _vehicleID = vehicleID;
-        _vehicleName = vehicleName;
+    public CompanyVehicle(String vehicleName){
+        this.vehicleName = vehicleName;
+    }
+
+    public String getVehicleName(){
+        return this.vehicleName;
+    }
+
+    public void setVehicleName(String clientName){
+        this.vehicleName = clientName;
     }
 }
