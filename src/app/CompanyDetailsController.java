@@ -2,6 +2,7 @@ package app;
 
 import app.client.CompanyClient;
 import app.company.TransportCompany;
+import app.worker.CompanyWorker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -42,6 +43,15 @@ public class CompanyDetailsController implements Initializable {
     @FXML
     private TableColumn<CompanyClient,String> companyClientsColumn;
 
+    @FXML
+    private TextField workerNameTextField;
+
+    @FXML
+    private TableView<CompanyWorker> companyWorkersTableView;
+
+    @FXML
+    private TableColumn<CompanyWorker,String> companyWorkersColumn;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
@@ -51,17 +61,37 @@ public class CompanyDetailsController implements Initializable {
         companyClient.setClientName(editEvent.getNewValue().toString());
     }
 
-    public void createCompany(){
+    public void createClient(){
         CompanyClient newCompanyClient = new CompanyClient(clientNameTextField.getText());
         companyClientsTableView.getItems().add(newCompanyClient);
         transportCompanies.get(transportCompanyIndex).addClient(newCompanyClient);
     }
 
-    public void deleteCompany(){
+    public void deleteClient(){
         ObservableList<CompanyClient> companyClients;
         companyClients = companyClientsTableView.getItems();
         int selectedCompanyClient = companyClientsTableView.getSelectionModel().getFocusedIndex();
         companyClients.remove(selectedCompanyClient);
+        this.transportCompanies.get(this.transportCompanyIndex).removeClient(selectedCompanyClient);
+    }
+
+    public void editWorker(CellEditEvent editEvent){
+        CompanyWorker companyWorker = companyWorkersTableView.getSelectionModel().getSelectedItem();
+        companyWorker.setWorkerName(editEvent.getNewValue().toString());
+    }
+
+    public void createWorker(){
+        CompanyWorker newCompanyWorker = new CompanyWorker(workerNameTextField.getText());
+        companyWorkersTableView.getItems().add(newCompanyWorker);
+        transportCompanies.get(transportCompanyIndex).addWorker(newCompanyWorker);
+    }
+
+    public void deleteWorker(){
+        ObservableList<CompanyWorker> companyWorkers;
+        companyWorkers = companyWorkersTableView.getItems();
+        int selectedCompanyWorker = companyWorkersTableView.getSelectionModel().getFocusedIndex();
+        companyWorkers.remove(selectedCompanyWorker);
+        this.transportCompanies.get(transportCompanyIndex).removeWorker(selectedCompanyWorker);
     }
 
     public void showMainView(ActionEvent actionEvent) throws IOException {
@@ -80,9 +110,15 @@ public class CompanyDetailsController implements Initializable {
         this.transportCompanies = transportCompany;
         this.transportCompanyIndex = index;
         this.companyName.setText(this.transportCompanies.get(this.transportCompanyIndex).getCompanyName());
+
         companyClientsColumn.setCellValueFactory(new PropertyValueFactory<CompanyClient,String>("clientName"));
         companyClientsTableView.setItems(FXCollections.observableArrayList(this.transportCompanies.get(this.transportCompanyIndex).getCompanyClients()));
         companyClientsTableView.setEditable(true);
         companyClientsColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        companyWorkersColumn.setCellValueFactory(new PropertyValueFactory<CompanyWorker,String>("workerName"));
+        companyWorkersTableView.setItems(FXCollections.observableArrayList(this.transportCompanies.get(this.transportCompanyIndex).getCompanyWorkers()));
+        companyWorkersTableView.setEditable(true);
+        companyWorkersColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 }
