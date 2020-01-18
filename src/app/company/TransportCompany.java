@@ -11,13 +11,13 @@ public class TransportCompany {
     private String companyName;
     private List companyClients;
     private List _companyVehicles;
-    private List _companyWorkers;
+    private List companyWorkers;
 
     public TransportCompany(String companyName){
         this.companyName = companyName;
         this.companyClients = new ArrayList();
         _companyVehicles = new ArrayList();
-        _companyWorkers = new ArrayList();
+        companyWorkers = new ArrayList();
     }
 
     public void setCompanyName(String companyName){
@@ -50,12 +50,17 @@ public class TransportCompany {
         _companyVehicles.add(new CompanyVehicle(vehicleID,vehicleName));
     }
 
-    public void addWorker(String workerName){
-        int workerID = this._companyWorkers.size();
-        _companyWorkers.add(new CompanyWorker(workerID,workerName));
+    public void addWorker(CompanyWorker newWorker){
+        companyWorkers.add(newWorker);
+    }
+
+    public void removeWorker(int oldWorkerIndex){
+        companyWorkers.remove(oldWorkerIndex);
     }
 
     public List<CompanyClient> getCompanyClients() {
         return this.companyClients;
     }
+
+    public List<CompanyWorker> getCompanyWorkers() { return this.companyWorkers; }
 }

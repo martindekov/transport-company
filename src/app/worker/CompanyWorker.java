@@ -1,11 +1,17 @@
 package app.worker;
 
 public class CompanyWorker {
-    private int _workerID;
-    private String _workerName;
+    private String workerName;
 
-    public CompanyWorker(int workerID, String workerName){
-        _workerID = workerID;
-        _workerName = workerName;
+    public CompanyWorker(String workerName){
+        this.workerName = workerName;
+    }
+
+    public String getWorkerName(){
+        return this.workerName;
+    }
+
+    public void setWorkerName(String clientName){
+        this.workerName = clientName;
     }
 }
