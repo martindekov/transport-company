@@ -40,6 +40,11 @@
                                     <Insets left="7.0" top="7.0" />
                                  </HBox.margin>
                               </Button>
+                              <Button mnemonicParsing="false" onAction="#placeOrder" text="Order">
+                                 <HBox.margin>
+                                    <Insets left="7.0" top="7.0" />
+                                 </HBox.margin>
+                              </Button>
                            </children>
                            <padding>
                               <Insets left="7.0" />

@@ -14,4 +14,9 @@ public class CompanyVehicle {
     public void setVehicleName(String clientName){
         this.vehicleName = clientName;
     }
+
+    @Override
+    public String toString() {
+        return vehicleName;
+    }
 }

@@ -16,6 +16,7 @@ import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -54,6 +55,7 @@ public class MainAppController implements Initializable {
         transportCompanies = transportCompanyTableView.getItems();
         int selectedTransportCompany = transportCompanyTableView.getSelectionModel().getFocusedIndex();
         transportCompanies.remove(selectedTransportCompany);
+        this.transportCompanies.remove(selectedTransportCompany);
     }
 
     public void showCompanyView(ActionEvent actionEvent) throws IOException {
@@ -68,7 +70,34 @@ public class MainAppController implements Initializable {
 
         companyDetailsWindow.show();
     }
+    public void placeOrder(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("OrderView.fxml"));
+        Parent companyDetailsView = loader.load();
+        Scene companyDetailsViewScene = new Scene(companyDetailsView);
+        OrderController controller = loader.getController();
+        controller.initData(transportCompanies,transportCompanyTableView.getSelectionModel().getFocusedIndex());
+        Stage companyDetailsWindow = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
 
+        companyDetailsWindow.setScene(companyDetailsViewScene);
+
+        companyDetailsWindow.show();
+    }
+    /*
+    public void placeOrder(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("OrderView.fxml"));
+        Parent companyDetailsView = loader.load();
+        Scene companyDetailsViewScene = new Scene(companyDetailsView);
+        OrderController controller = loader.getController();
+        controller.initData(transportCompanies,transportCompanyTableView.getSelectionModel().getFocusedIndex());
+        Stage companyDetailsWindow = new Stage();
+
+        companyDetailsWindow.setScene(companyDetailsViewScene);
+
+        //companyDetailsWindow.onCloseRequestProperty().
+        companyDetailsWindow.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, companyDetailsWindow.);
+        companyDetailsWindow.show();
+    }
+    */
     public void initData(List<TransportCompany> transportCompanies){
         this.transportCompanies = transportCompanies;
         transportCompanyNameColumn.setCellValueFactory(new PropertyValueFactory<>("companyName"));

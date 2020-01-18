@@ -14,4 +14,9 @@ public class CompanyWorker {
     public void setWorkerName(String clientName){
         this.workerName = clientName;
     }
+
+    @Override
+    public String toString() {
+        return workerName;
+    }
 }
