@@ -35,9 +35,9 @@ JavaFX:
     - [x] Create
     - [x] Edit
     - [x] Delete
-- [ ] Window which will enable adding transportation orders (child window)
+- [x] Window which will enable adding transportation orders (child window)
     - [ ] List
-    - [ ] Create
+    - [x] Create
     - [ ] Edit
     - [ ] Delete
 

@@ -14,4 +14,9 @@ public class CompanyClient {
     public void setClientName(String clientName){
         this.clientName = clientName;
     }
+
+    @Override
+    public String toString() {
+        return this.clientName;
+    }
 }

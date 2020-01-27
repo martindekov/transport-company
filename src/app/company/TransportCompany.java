@@ -1,6 +1,7 @@
 package app.company;
 
 import app.client.CompanyClient;
+import app.order.TransportOrder;
 import app.vechicle.CompanyVehicle;
 import app.worker.CompanyWorker;
 
@@ -12,12 +13,14 @@ public class TransportCompany {
     private List companyClients;
     private List companyVehicles;
     private List companyWorkers;
+    private List companyOrders;
 
     public TransportCompany(String companyName) {
         this.companyName = companyName;
         this.companyClients = new ArrayList();
         this.companyVehicles = new ArrayList();
         this.companyWorkers = new ArrayList();
+        this.companyOrders = new ArrayList();
     }
 
     public void setCompanyName(String companyName) {
@@ -49,6 +52,9 @@ public class TransportCompany {
         companyWorkers.add(newWorker);
     }
 
+    public void addOrder(TransportOrder newOrder){
+        this.companyOrders.add(newOrder);
+    }
 
     public List<CompanyClient> getCompanyClients() {
         return this.companyClients;
